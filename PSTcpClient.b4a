@@ -1,0 +1,79 @@
+﻿Version=3.82
+IconFile=
+NumberOfModules=1
+Module1=TcpClient
+Build1=Default,b4a.example
+DoNotOverwriteManifest=False
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+NumberOfFiles=1
+File1=PSTCPLayout.bal
+NumberOfLibraries=4
+Library1=core
+Library2=network
+Library3=randomaccessfile
+Library4=byteconverter
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Private EMessage As EditText
+	Private EResponse As EditText
+	Private EAddress As EditText
+	Private EPort As EditText
+	
+	Private Client As TcpClient
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("PSTCPLayout")
+	EResponse.Enabled = False
+	EResponse.TextColor = Colors.Green
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Client_Connected
+	Client.SendMessageString(EMessage.Text)
+End Sub
+
+Sub Client_ResponseReady
+	EResponse.Text = Client.GetStringResponse
+End Sub
+
+Sub BSend_Click
+	Dim s_address As String = EAddress.Text
+	Dim s_port As Int = EPort.Text
+
+	Client.Initialize(s_address, s_port, 5000)
+	Client.RegisterConnectedEvent("Main", "Client_Connected")
+	Client.RegisterResponseReadyEvent("Main", "Client_ResponseReady")
+	
+	Client.Connect
+End Sub
