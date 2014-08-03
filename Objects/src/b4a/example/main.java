@@ -320,6 +320,23 @@ public anywheresoftware.b4a.objects.EditTextWrapper _eresponse = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _eaddress = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _eport = null;
 public b4a.example.tcpclient _client = null;
+public static String  _activity_create(boolean _firsttime) throws Exception{
+RDebugUtils.currentModule="main";
+RDebugUtils.currentLine=131072;
+ //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=131074;
+ //BA.debugLineNum = 131074;BA.debugLine="Activity.LoadLayout(\"PSTCPLayout\")";
+mostCurrent._activity.LoadLayout("PSTCPLayout",mostCurrent.activityBA);
+RDebugUtils.currentLine=131075;
+ //BA.debugLineNum = 131075;BA.debugLine="EResponse.Enabled = False";
+mostCurrent._eresponse.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+RDebugUtils.currentLine=131076;
+ //BA.debugLineNum = 131076;BA.debugLine="EResponse.TextColor = Colors.Green";
+mostCurrent._eresponse.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
+RDebugUtils.currentLine=131077;
+ //BA.debugLineNum = 131077;BA.debugLine="End Sub";
+return "";
+}
 public static String  _activity_pause(boolean _userclosed) throws Exception{
 RDebugUtils.currentModule="main";
 RDebugUtils.currentLine=262144;
@@ -340,50 +357,50 @@ public static String  _bsend_click() throws Exception{
 RDebugUtils.currentModule="main";
 String _s_address = "";
 int _s_port = 0;
-RDebugUtils.currentLine=1441792;
- //BA.debugLineNum = 1441792;BA.debugLine="Sub BSend_Click";
-RDebugUtils.currentLine=1441793;
- //BA.debugLineNum = 1441793;BA.debugLine="Dim s_address As String = EAddress.Text";
+RDebugUtils.currentLine=458752;
+ //BA.debugLineNum = 458752;BA.debugLine="Sub BSend_Click";
+RDebugUtils.currentLine=458753;
+ //BA.debugLineNum = 458753;BA.debugLine="Dim s_address As String = EAddress.Text";
 _s_address = mostCurrent._eaddress.getText();
-RDebugUtils.currentLine=1441794;
- //BA.debugLineNum = 1441794;BA.debugLine="Dim s_port As Int = EPort.Text";
+RDebugUtils.currentLine=458754;
+ //BA.debugLineNum = 458754;BA.debugLine="Dim s_port As Int = EPort.Text";
 _s_port = (int)(Double.parseDouble(mostCurrent._eport.getText()));
-RDebugUtils.currentLine=1441796;
- //BA.debugLineNum = 1441796;BA.debugLine="Client.Initialize(s_address, s_port, 5000)";
+RDebugUtils.currentLine=458756;
+ //BA.debugLineNum = 458756;BA.debugLine="Client.Initialize(s_address, s_port, 5000)";
 mostCurrent._client._initialize(null,processBA,_s_address,_s_port,(int) (5000));
-RDebugUtils.currentLine=1441797;
- //BA.debugLineNum = 1441797;BA.debugLine="Client.RegisterConnectedEvent(\"Main\", \"Client_Connected\")";
-mostCurrent._client._registerconnectedevent(null,(Object)("Main"),"Client_Connected");
-RDebugUtils.currentLine=1441798;
- //BA.debugLineNum = 1441798;BA.debugLine="Client.RegisterResponseReadyEvent(\"Main\", \"Client_ResponseReady\")";
-mostCurrent._client._registerresponsereadyevent(null,(Object)("Main"),"Client_ResponseReady");
-RDebugUtils.currentLine=1441800;
- //BA.debugLineNum = 1441800;BA.debugLine="Client.Connect";
+RDebugUtils.currentLine=458757;
+ //BA.debugLineNum = 458757;BA.debugLine="Client.RegisterConnectedEvent(Me, \"Client_Connected\")";
+mostCurrent._client._registerconnectedevent(null,main.getObject(),"Client_Connected");
+RDebugUtils.currentLine=458758;
+ //BA.debugLineNum = 458758;BA.debugLine="Client.RegisterResponseReadyEvent(Me, \"Client_ResponseReady\")";
+mostCurrent._client._registerresponsereadyevent(null,main.getObject(),"Client_ResponseReady");
+RDebugUtils.currentLine=458760;
+ //BA.debugLineNum = 458760;BA.debugLine="Client.Connect";
 mostCurrent._client._connect(null);
-RDebugUtils.currentLine=1441801;
- //BA.debugLineNum = 1441801;BA.debugLine="End Sub";
+RDebugUtils.currentLine=458761;
+ //BA.debugLineNum = 458761;BA.debugLine="End Sub";
 return "";
 }
 public static String  _client_connected() throws Exception{
 RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=3014656;
- //BA.debugLineNum = 3014656;BA.debugLine="Sub Client_Connected";
-RDebugUtils.currentLine=3014657;
- //BA.debugLineNum = 3014657;BA.debugLine="Client.SendMessageString(EMessage.Text)";
+RDebugUtils.currentLine=327680;
+ //BA.debugLineNum = 327680;BA.debugLine="Sub Client_Connected";
+RDebugUtils.currentLine=327681;
+ //BA.debugLineNum = 327681;BA.debugLine="Client.SendMessageString(EMessage.Text)";
 mostCurrent._client._sendmessagestring(null,mostCurrent._emessage.getText());
-RDebugUtils.currentLine=3014658;
- //BA.debugLineNum = 3014658;BA.debugLine="End Sub";
+RDebugUtils.currentLine=327682;
+ //BA.debugLineNum = 327682;BA.debugLine="End Sub";
 return "";
 }
 public static String  _client_responseready() throws Exception{
 RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=3997696;
- //BA.debugLineNum = 3997696;BA.debugLine="Sub Client_ResponseReady";
-RDebugUtils.currentLine=3997697;
- //BA.debugLineNum = 3997697;BA.debugLine="EResponse.Text = Client.GetStringResponse";
+RDebugUtils.currentLine=393216;
+ //BA.debugLineNum = 393216;BA.debugLine="Sub Client_ResponseReady";
+RDebugUtils.currentLine=393217;
+ //BA.debugLineNum = 393217;BA.debugLine="EResponse.Text = Client.GetStringResponse";
 mostCurrent._eresponse.setText((Object)(mostCurrent._client._getstringresponse(null)));
-RDebugUtils.currentLine=3997698;
- //BA.debugLineNum = 3997698;BA.debugLine="End Sub";
+RDebugUtils.currentLine=393218;
+ //BA.debugLineNum = 393218;BA.debugLine="End Sub";
 return "";
 }
 }

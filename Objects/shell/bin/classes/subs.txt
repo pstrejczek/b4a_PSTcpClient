@@ -1,5 +1,5 @@
 b4a.example
-main,activity_create,1,1,32,37
+main,activity_create,1,0,32,37
 ,eaddress,,emessage,,eport,,eresponse
 ,eaddress,,emessage,,eport,,eresponse
 
@@ -67,7 +67,7 @@ tcpclient,getarrayofbyteresponse,0,0,60,62
 
 
 
-tcpclient,getlasterror,0,1,93,95
+tcpclient,getlasterror,0,0,93,95
 
 
 

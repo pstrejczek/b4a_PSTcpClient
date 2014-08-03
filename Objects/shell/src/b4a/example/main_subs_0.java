@@ -85,12 +85,12 @@ _s_port = BA.numberCast(int.class, main.mostCurrent._eport.runMethod(true,"getTe
  BA.debugLineNum = 59;BA.debugLine="Client.Initialize(s_address, s_port, 5000)";
 Debug.ShouldStop(67108864);
 main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_initialize",main.processBA,(Object)(_s_address),(Object)(_s_port),(Object)(BA.numberCast(int.class, 5000)));
- BA.debugLineNum = 60;BA.debugLine="Client.RegisterConnectedEvent(\"Main\", \"Client_Connected\")";
+ BA.debugLineNum = 60;BA.debugLine="Client.RegisterConnectedEvent(Me, \"Client_Connected\")";
 Debug.ShouldStop(134217728);
-main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_registerconnectedevent",(Object)(RemoteObject.createImmutable(("Main"))),(Object)(BA.ObjectToString("Client_Connected")));
- BA.debugLineNum = 61;BA.debugLine="Client.RegisterResponseReadyEvent(\"Main\", \"Client_ResponseReady\")";
+main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_registerconnectedevent",(Object)(main.getObject()),(Object)(BA.ObjectToString("Client_Connected")));
+ BA.debugLineNum = 61;BA.debugLine="Client.RegisterResponseReadyEvent(Me, \"Client_ResponseReady\")";
 Debug.ShouldStop(268435456);
-main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_registerresponsereadyevent",(Object)(RemoteObject.createImmutable(("Main"))),(Object)(BA.ObjectToString("Client_ResponseReady")));
+main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_registerresponsereadyevent",(Object)(main.getObject()),(Object)(BA.ObjectToString("Client_ResponseReady")));
  BA.debugLineNum = 63;BA.debugLine="Client.Connect";
 Debug.ShouldStop(1073741824);
 main.mostCurrent._client.runClassMethod (b4a.example.tcpclient.class, "_connect");

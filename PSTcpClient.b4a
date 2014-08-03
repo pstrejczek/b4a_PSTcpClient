@@ -72,8 +72,8 @@ Sub BSend_Click
 	Dim s_port As Int = EPort.Text
 
 	Client.Initialize(s_address, s_port, 5000)
-	Client.RegisterConnectedEvent("Main", "Client_Connected")
-	Client.RegisterResponseReadyEvent("Main", "Client_ResponseReady")
+	Client.RegisterConnectedEvent(Me, "Client_Connected")
+	Client.RegisterResponseReadyEvent(Me, "Client_ResponseReady")
 	
 	Client.Connect
 End Sub
