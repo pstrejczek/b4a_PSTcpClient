@@ -1,5 +1,6 @@
 ﻿Type=Class
-Version=3.82
+Version=7
+ModulesStructureVersion=1
 B4A=true
 @EndOfDesignText@
 'Class module
@@ -15,6 +16,7 @@ Sub Class_Globals
 	Private event_module_name As Object
 	
 	Private last_error As String
+	Private Astreams As AsyncStreams
 	
 	Private responded_event_method_name As String
 	Private responded_event_module As Object
@@ -52,13 +54,19 @@ End Sub
 
 Private Sub TCPSocket_Connected (Successful As Boolean)
 	If Successful Then
+		Astreams.InitializePrefix(TCPSocket.InputStream, False, TCPSocket.OutputStream, "AStreams")
 		CallSub(event_module_name, event_method_name)
 	End If
 End Sub
 
 Public Sub GetStringResponse As String
 	Dim cv As ByteConverter
-	Return cv.StringFromBytes(response, "UTF8")
+	Return cv.StringFromBytes(response, "ASCII")
+End Sub
+
+Sub AStreams_NewData (Buffer() As Byte)
+	response = Buffer
+	CallSub(responded_event_module, responded_event_method_name)
 End Sub
 
 Public Sub GetArrayOfByteResponse As Byte()
@@ -66,32 +74,8 @@ Public Sub GetArrayOfByteResponse As Byte()
 End Sub
 
 Public Sub SendMessageString(mess As String) 
-	SendMessageByteArray(mess.GetBytes("UTF8"))
-End Sub
-
-Public Sub SendMessageByteArray(mess() As Byte) 
-	Dim os As OutputStream
-	Dim in_s As InputStream
-	Dim buffer(1024) As Byte
-	
-	os = TCPSocket.OutputStream
-	os.WriteBytes(mess, 0, mess.Length)
-
-	in_s = TCPSocket.InputStream
-
-	' Wait for data to arrive in the buffer, if no data defined timeout is reached
-	Dim start As Long = DateTime.now
-	Do Until (DateTime.now>start+timeout OR in_s.BytesAvailable > 0)
-     DoEvents
-  	Loop
-	
-	If in_s.BytesAvailable > 0 Then
-		in_s.ReadBytes(buffer, 0, in_s.BytesAvailable)
-		response = buffer
-		CallSub(responded_event_module, responded_event_method_name) 
-	Else
-		last_error = "No response from server"	
-	End If
+	If Astreams.IsInitialized = False Then Return
+	Astreams.Write(mess.GetBytes("ASCII"))
 End Sub
 
 Public Sub GetLastError As String
